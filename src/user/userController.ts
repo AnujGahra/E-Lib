@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs";
 import { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
 import User from "./userModal";
@@ -21,6 +22,11 @@ export const createUser = async (
         const error = createHttpError(400, 'User already exists with this email.');
         return next(error);
     }
+
+    // hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    
     // Process
     // Response
     res.json({ message: "User created" });

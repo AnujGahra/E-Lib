@@ -4,6 +4,7 @@ import path from "node:path";
 import fs from "node:fs";
 import Book from "./bookModel";
 import createHttpError from "http-errors";
+import { AuthRequest } from "../middlewares/authenticate";
 
 export const createBook = async (
     req: Request,
